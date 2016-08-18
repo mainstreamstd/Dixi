@@ -82,7 +82,7 @@ public class FeedbackActivity extends Activity {
     boolean savedInfo = false;
 
     protected CheckBox accept;
-    protected EditText name, surname, middlename, email, textFeed, phone;
+    protected EditText fio, email, textFeed, phone;
     protected Spinner topic, region, punkt, address;
     protected int topicR, regionR, punktR, addressR = 0;
     protected Button attach, send, reconnect;
@@ -123,9 +123,7 @@ public class FeedbackActivity extends Activity {
         sp = getSharedPreferences("prefs", Context.MODE_PRIVATE);
 
         accept = (CheckBox) findViewById(R.id.accept);
-        name = (EditText) findViewById(R.id.name);
-        surname = (EditText) findViewById(R.id.surname);
-        middlename = (EditText) findViewById(R.id.middlename);
+        fio = (EditText) findViewById(R.id.fio);
         email = (EditText) findViewById(R.id.email);
         phone = (EditText) findViewById(R.id.phone);
         textFeed = (EditText) findViewById(R.id.text_feed);
@@ -162,9 +160,7 @@ public class FeedbackActivity extends Activity {
 
 
 
-        name.setOnFocusChangeListener(focusListener);
-        surname.setOnFocusChangeListener(focusListener);
-        middlename.setOnFocusChangeListener(focusListener);
+        fio.setOnFocusChangeListener(focusListener);
         email.setOnFocusChangeListener(focusListener);
         textFeed.setOnFocusChangeListener(focusListener);
         phone.setOnFocusChangeListener(focusListener);
@@ -208,24 +204,12 @@ public class FeedbackActivity extends Activity {
             }
         }
 
-        /*sp.getString("last_name", ""),
-                sp.getString("first_name", ""),
-                sp.getString("parent_name", ""),
-                sp.getString("email", ""),
-                sp.getString("phone", ""),
-                sp.getString("theme_id", ""),
-                Integer.toString(0),
-                Integer.toString(0),
-                sp.getString("store_id", ""),
-                sp.getString("content", "")});*/
 
-        if(!sp.getString("last_name", "").equals("")){
-            surname.setText(sp.getString("last_name", ""));
-            name.setText(sp.getString("first_name", ""));
-            middlename.setText(sp.getString("parent_name", ""));
+            fio.setText(sp.getString("last_name", "") + " " + sp.getString("first_name", "") + " " + sp.getString("parent_name", ""));
+
             email.setText(sp.getString("email", ""));
             phone.setText(sp.getString("phone", ""));
-        }
+
 
         attach.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -255,9 +239,28 @@ public class FeedbackActivity extends Activity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                String name = "";
+                String surname = "";
+                String parentName = "";
+
+
+                String fioStr = fio.getText().toString();
+
+
+                try {
+                    surname = fioStr.substring(0, fioStr.indexOf(" "));
+                    fioStr.replace(fioStr.substring(0, fioStr.indexOf(" ") + 1), "");
+                    name = fioStr.substring(0, fioStr.indexOf(" "));
+                    fioStr.replace(fioStr.substring(0, fioStr.indexOf(" ") + 1), "");
+                    parentName = fioStr;
+                } catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+
                 if (isNetworkAvailable()) {
-                    if (surname.getText().toString().length() > 0 &&
-                            name.getText().toString().length() > 0 &&
+                    if (fio.getText().toString().length() > 0 &&
                             phone.getText().toString().length() > 0 &&
                             email.getText().toString().length() > 0 &&
                             textFeed.getText().toString().length() > 0
@@ -266,12 +269,21 @@ public class FeedbackActivity extends Activity {
                             && punktR != 0 && punktR != -1
                             && addressR != 0 && addressR != -1) {
 
+
+
+
+
                         if (accept.isChecked()) {
 
+
+
+
+                            Log.i("test parsing", surname + " " + name + " " + parentName);
+
                             FeedbackTask FT = new FeedbackTask();
-                            FT.execute(new String[]{surname.getText().toString(),
-                                    name.getText().toString(),
-                                    middlename.getText().toString(),
+                            FT.execute(new String[]{surname,
+                                    name,
+                                   parentName,
                                     email.getText().toString(),
                                     phone.getText().toString().replaceAll("[\\+()\\- ]", ""),
                                     Integer.toString(topicR),
@@ -294,8 +306,8 @@ public class FeedbackActivity extends Activity {
                     3. Send them when network became available
                      */
 
-                    if (surname.getText().toString().length() > 0 &&
-                            name.getText().toString().length() > 0 &&
+                    if (surname.length() > 0 &&
+                            name.length() > 0 &&
                             phone.getText().toString().length() > 0 &&
                             email.getText().toString().length() > 0 &&
                             textFeed.getText().toString().length() > 0
@@ -311,9 +323,9 @@ public class FeedbackActivity extends Activity {
                             savedInfo = true;
 
                             SharedPreferences.Editor editor = sp.edit();
-                            editor.putString("first_name", name.getText().toString());
-                            editor.putString("last_name", surname.getText().toString());
-                            editor.putString("parent_name", middlename.getText().toString());
+                            editor.putString("first_name", name);
+                            editor.putString("last_name", surname);
+                            editor.putString("parent_name",parentName);
                             editor.putString("email", email.getText().toString());
                             editor.putString("phone", phone.getText().toString().replaceAll("[\\+()\\- ]", ""));
 
@@ -694,12 +706,43 @@ public class FeedbackActivity extends Activity {
                     if (Integer.parseInt(result[0]) == 201) {
 
 
+                        String name = "";
+                        String surname = "";
+                        String parentName = "";
+
+
+                        String fioStr = fio.getText().toString();
+
+
+                        try {
+                            surname = fioStr.substring(0, fioStr.indexOf(" "));
+                            fioStr.replace(fioStr.substring(0, fioStr.indexOf(" ") + 1), "");
+                            name = fioStr.substring(0, fioStr.indexOf(" "));
+                            fioStr.replace(fioStr.substring(0, fioStr.indexOf(" ") + 1), "");
+                            parentName = fioStr;
+                        } catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+
+
+                        try {
+                            surname = fioStr.substring(0, fioStr.indexOf(" "));
+                            fioStr.replace(fioStr.substring(0, fioStr.indexOf(" ") + 1), "");
+                            name = fioStr.substring(0, fioStr.indexOf(" "));
+                            fioStr.replace(fioStr.substring(0, fioStr.indexOf(" ") + 1), "");
+                            parentName = fioStr;
+                        } catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+
 
 
                         SharedPreferences.Editor editor = sp.edit();
-                        editor.putString("first_name", name.getText().toString());
-                        editor.putString("last_name", surname.getText().toString());
-                        editor.putString("parent_name", middlename.getText().toString());
+                        editor.putString("first_name", name);
+                        editor.putString("last_name", surname);
+                        editor.putString("parent_name", parentName);
                         editor.putString("email", email.getText().toString());
                         editor.putString("phone", phone.getText().toString().replaceAll("[\\+()\\- ]", ""));
 
@@ -710,9 +753,10 @@ public class FeedbackActivity extends Activity {
                         editor.putString("file", "");
                         editor.commit();
 
-                        name.setText("");
-                        surname.setText("");
-                        middlename.setText("");
+
+                        fio.setText(surname + " " + name + " " + parentName);
+
+
                         email.setText("");
 
                         textFeed.setText("");
