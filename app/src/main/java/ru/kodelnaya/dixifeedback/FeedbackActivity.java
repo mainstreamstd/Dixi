@@ -256,7 +256,6 @@ public class FeedbackActivity extends Activity {
             @Override
             public void onClick(View view) {
                 if (isNetworkAvailable()) {
-
                     if (surname.getText().toString().length() > 0 &&
                             name.getText().toString().length() > 0 &&
                             phone.getText().toString().length() > 0 &&
@@ -612,6 +611,14 @@ public class FeedbackActivity extends Activity {
     }
 
     private class FeedbackTask extends AsyncTask<String[], Void, String[]> {
+
+        @Override
+        protected void onPreExecute()
+        {
+            Log.i("1234","start task");
+            send.setActivated(false);
+        }
+
         @Override
         protected String[] doInBackground(String[]... params) {
             try {
@@ -686,6 +693,9 @@ public class FeedbackActivity extends Activity {
 
                     if (Integer.parseInt(result[0]) == 201) {
 
+
+
+
                         SharedPreferences.Editor editor = sp.edit();
                         editor.putString("first_name", name.getText().toString());
                         editor.putString("last_name", surname.getText().toString());
@@ -708,6 +718,9 @@ public class FeedbackActivity extends Activity {
                         fillSpinners();
 
                         Toast.makeText(FeedbackActivity.this, "Сообщение успешно отправлено", Toast.LENGTH_SHORT).show();
+
+                        send.setEnabled(true);
+
                     } else {
                         Toast.makeText(FeedbackActivity.this, "Неизвестная ошибка", Toast.LENGTH_SHORT).show();
                     }
