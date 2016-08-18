@@ -707,6 +707,7 @@ public class FeedbackActivity extends Activity {
                         editor.putString("store_id", Integer.toString(addressR));
 
                         editor.putString("content", textFeed.getText().toString());
+                        editor.putString("file", "");
                         editor.commit();
 
                         name.setText("");
