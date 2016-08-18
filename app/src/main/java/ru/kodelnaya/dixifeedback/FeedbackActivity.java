@@ -666,7 +666,7 @@ public class FeedbackActivity extends Activity {
         protected void onPostExecute(String[] result) {
             super.onPostExecute(result);
             Log.wtf("result", result[1]);
-
+            // говно
             JSONParser parser = new JSONParser();
 
             Object obj = null;
