@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Отзыв о магазине Дикси</string>
+
+    <string-array name="feedback_topic">
+        <item>Тема обращения</item>
+    </string-array>
+
+    <string-array name="feedback_region">
+        <item>Регион</item>
+    </string-array>
+
+    <string-array name="feedback_punkt">
+        <item>Населенный пункт</item>
+    </string-array>
+
+    <string-array name="feedback_address">
+        <item>Адрес</item>
+    </string-array>
+
+    <string name="choose_button_label">Выбрать</string>
+    <string name="cancel_button_label">Отмена</string>
+    <string name="rules">Я прочитал и принимаю <u>условия\nпользовательского соглашения</u>"</string>
+</resources>

@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white_gray"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="ru.kodelnaya.dixifeedback.FeedbackActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center|top"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <LinearLayout
+        android:layout_width="0px"
+        android:layout_height="0px">
+        <AutoCompleteTextView android:id="@+id/autotext"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:nextFocusUp="@id/autotext"
+            android:nextFocusLeft="@id/autotext"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:id="@+id/header"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="92dp"
+            android:layout_height="26dp"
+            android:background="@drawable/logo_comp"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/logo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ОТЗЫВ О МАГАЗИНЕ"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="10dp"
+            android:textColor="@color/brown"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_below="@+id/logo"/>
+
+    </RelativeLayout>
+
+
+
+    <View
+        android:id="@+id/toolbar_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_below="@id/header"
+        android:background="@xml/toolbar_shadow" />
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_below="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_alignParentTop="true" android:orientation="vertical" android:gravity="center">
+
+
+        <EditText  android:maxLines="1" android:layout_width="fill_parent" android:layout_height="0dp" android:layout_weight="1"
+            android:paddingTop="10dp" android:paddingBottom="10dp"  android:paddingLeft="16dp" android:paddingStart="16dp" android:textSize="16sp" android:gravity="start" android:id="@+id/surname"
+            android:background="@drawable/popup_round" android:layout_gravity="center" android:hint="Фамилия"
+            android:textColor="@color/black" android:textColorHint="@color/dark_gray" android:layout_marginLeft="20dp" android:layout_marginRight="20dp" android:layout_marginBottom="15dp"
+            android:layout_marginTop="32dp" />
+        <EditText   android:maxLines="1" android:layout_width="fill_parent" android:layout_height="0dp" android:layout_weight="1"
+            android:paddingTop="10dp" android:paddingBottom="10dp"  android:paddingLeft="16dp" android:paddingStart="16dp" android:textSize="16sp" android:gravity="start" android:id="@+id/name"
+            android:background="@drawable/popup_round" android:layout_gravity="center" android:hint="Имя"
+            android:textColor="@color/black" android:textColorHint="@color/dark_gray" android:layout_marginLeft="20dp" android:layout_marginRight="20dp" android:layout_marginBottom="15dp" />
+        <EditText  android:maxLines="1" android:layout_width="fill_parent" android:layout_height="0dp" android:layout_weight="1"
+            android:paddingTop="10dp" android:paddingBottom="10dp"  android:paddingLeft="16dp" android:paddingStart="16dp" android:textSize="16sp" android:gravity="start" android:id="@+id/middlename"
+            android:background="@drawable/popup_round" android:layout_gravity="center" android:hint="Отчество"
+            android:textColor="@color/black" android:textColorHint="@color/dark_gray" android:layout_marginLeft="20dp" android:layout_marginRight="20dp" android:layout_marginBottom="15dp" />
+        <EditText  android:maxLines="1" android:layout_width="fill_parent" android:layout_height="0dp" android:layout_weight="1"
+            android:paddingTop="10dp" android:paddingBottom="10dp"  android:paddingLeft="16dp" android:paddingStart="16dp" android:textSize="16sp" android:gravity="start" android:id="@+id/email"
+            android:background="@drawable/popup_round" android:layout_gravity="center" android:hint="E-mail"
+            android:textColor="@color/black" android:textColorHint="@color/dark_gray" android:layout_marginLeft="20dp" android:layout_marginRight="20dp" android:layout_marginBottom="15dp" />
+        <EditText  android:maxLines="1" android:textIsSelectable="false" android:layout_width="fill_parent" android:layout_height="0dp" android:layout_weight="1"
+            android:paddingTop="10dp" android:paddingBottom="10dp"  android:paddingLeft="16dp" android:paddingStart="16dp" android:textSize="16sp" android:gravity="start" android:id="@+id/phone"
+            android:background="@drawable/popup_round" android:layout_gravity="center" android:hint="+7 (000) 000-00-00"
+            android:inputType="phone"
+            android:textColor="@color/black" android:textColorHint="@color/dark_gray" android:layout_marginLeft="20dp" android:layout_marginRight="20dp" android:layout_marginBottom="15dp" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:clickable="true"
+            android:addStatesFromChildren="true"
+            android:background="@drawable/spinner"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="15dp"
+           >
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:background="@null"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:paddingLeft="15dp"
+                android:paddingRight="30dp"
+
+                android:entries="@array/feedback_topic"
+                android:id="@+id/topic" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:maxHeight="25dp"
+                android:src="@drawable/dropdown"
+                android:layout_alignRight="@+id/topic"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:clickable="true"
+            android:addStatesFromChildren="true"
+            android:background="@drawable/spinner"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="15dp">
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:background="@null"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:paddingLeft="15dp"
+                android:paddingRight="30dp"
+
+                android:entries="@array/feedback_region"
+                android:id="@+id/region" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:maxHeight="25dp"
+                android:src="@drawable/dropdown"
+                android:layout_alignRight="@+id/region"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"/>
+        </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:clickable="true"
+        android:addStatesFromChildren="true"
+        android:background="@drawable/spinner"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="15dp">
+
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:background="@null"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:paddingLeft="15dp"
+            android:paddingRight="30dp"
+
+            android:entries="@array/feedback_punkt"
+            android:id="@+id/punkt" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxHeight="25dp"
+            android:src="@drawable/dropdown"
+            android:layout_alignRight="@+id/punkt"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:clickable="true"
+        android:addStatesFromChildren="true"
+        android:background="@drawable/spinner"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="15dp">
+
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:background="@null"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:paddingLeft="15dp"
+            android:paddingRight="30dp"
+
+            android:entries="@array/feedback_address"
+            android:id="@+id/address" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxHeight="25dp"
+            android:src="@drawable/dropdown"
+            android:layout_alignRight="@+id/address"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"/>
+    </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="15dp">
+
+                <EditText android:layout_width="fill_parent" android:layout_height="match_parent" android:layout_weight="1"
+                    android:paddingLeft="16dp" android:paddingTop="8dp" android:textSize="16sp" android:gravity="top|start"  android:id="@+id/text_feed"
+                    android:background="@drawable/popup_round" android:layout_gravity="center" android:hint="Введите текст сообщения"
+                    android:textColor="@color/black" android:textColorHint="@color/gray" />
+
+            </RelativeLayout>
+
+
+
+
+    <Button
+        android:layout_width="230dp"
+        android:layout_height="45dp"
+        android:background="@drawable/button"
+        android:textColor="@color/white"
+
+        android:textAllCaps="true"
+        android:textSize="13sp"
+
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+
+        android:id="@+id/attach"
+        android:text="Загрузить файл"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp" />
+
+    <Button
+        android:layout_width="230dp"
+        android:layout_height="45dp"
+        android:background="@drawable/button"
+        android:textColor="@color/white"
+
+        android:textAllCaps="true"
+        android:textSize="13sp"
+
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_margin="15dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+
+        android:id="@+id/send"
+        android:text="Отправить отзыв"/>
+
+        <RelativeLayout
+            android:layout_width="290dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center_horizontal">
+
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:id="@+id/accept"
+                android:paddingTop="10dp"
+                android:layout_margin="10dp" />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/accept"
+                android:layout_toRightOf="@+id/accept"
+                android:id="@+id/rules"
+                android:textColor="@android:color/black" android:textAllCaps="false"
+                android:text="@string/rules"
+                android:paddingTop="10dp" />
+
+
+
+        </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:id="@+id/no_internet"
+        android:gravity="center"
+        >
+        <View android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/back"
+            android:background="@color/orange" android:alpha="0.8" android:clickable="true"/>
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="70dp"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:background="@drawable/popup_round"
+            android:gravity="center"
+            android:layout_centerInParent="true">
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="true"
+                android:textColor="@color/orange"
+                android:text="Нет подключения к сети интернет"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:paddingBottom="10dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/button"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_margin="15dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+
+                android:id="@+id/tryhard"
+                android:text="Попробовать подключиться"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
